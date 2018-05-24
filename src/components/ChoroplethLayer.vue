@@ -19,7 +19,9 @@ function mouseover({ target }) {
   if (!L.Browser.ie && !L.Browser.opera) {
     target.bringToFront()
   }
-
+  console.log(target);
+  console.log(target.feature);
+  console.log(target.feature.properties);
   let geojsonItem = target.feature.properties
   let item = this.geojsonData.data.find(
     x => x[this.idKey] === Number(geojsonItem[this.geojsonIdKey])
