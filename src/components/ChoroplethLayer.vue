@@ -11,8 +11,8 @@ import { getMin, getMax, normalizeValue, getColor, validNumber } from "../util"
 
 function mouseover({ target }) {
   target.setStyle({
-    weight: 5,
-    color: "#666",
+    weight: 3,
+    color: "lightblue",
     dashArray: ""
   })
 
@@ -23,6 +23,7 @@ function mouseover({ target }) {
   let item = this.geojsonData.data.find(
     x => {return x[this.idKey] == geojsonItem[this.geojsonIdKey]}
   )
+  
   let tempItem = { name: item[this.titleKey], value: item[this.value.key] }
   if (this.extraValues) {
     let tempValues = []
@@ -71,9 +72,12 @@ export default {
       currentItem: { name: "", value: 0 },
       geojsonOptions: {
         style: feature => {
-          let itemGeoJSONID = Number(feature.properties[this.geojsonIdKey])
+          let itemGeoJSONID = feature.properties[this.geojsonIdKey]
           let color = "NONE"
           const {data} = this.geojsonData
+          console.log(data);
+          console.log(feature.properties);
+          console.log(itemGeoJSONID);
           let item = data.find(x => x[this.idKey] === itemGeoJSONID)
           if (!item) {
             return {
@@ -81,7 +85,9 @@ export default {
               weight: 2
             }
           }
-          let valueParam = Number(item[this.value.key])
+          let valueParam = item[this.value.key]
+          console.log(valueParam);
+          console.log(this.value.key);
           if (!validNumber(valueParam)) {
             return {
               color: "white",
@@ -93,7 +99,7 @@ export default {
           return {
             weight: 2,
             opacity: 1,
-            color: "white",
+            color: "whites",
             dashArray: "3",
             fillOpacity: 0.7,
             fillColor: getColor(valueParam, this.colorScale, min, max)
