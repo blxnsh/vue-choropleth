@@ -43,7 +43,7 @@ function mouseout({ target }) {
   target.setStyle({
     weight: 2,
     color: "#FFF",
-    fillOpacity: 0.3,
+    fillOpacity: 0.5,
     dashArray: ""
   })
   this.currentItem = { name: "", value: 0 }
@@ -79,7 +79,7 @@ export default {
           if (!item) {
             return {
               color: "white",
-              weight: 2
+              weight: 2,
             }
           }
           let valueParam = item[this.value.key]
@@ -97,7 +97,7 @@ export default {
             opacity: 1,
             color: "white",
             dashArray: "3",
-            fillOpacity: 0.3,
+            fillOpacity: 0.5,
             fillColor: fillColor
           }
         },
