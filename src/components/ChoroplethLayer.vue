@@ -84,6 +84,13 @@ export default {
           }
           let valueParam = item[this.value.key]
           const { min, max } = this
+          
+          let fillColor;
+          if(this.colorScale[data.indexOf(item)]){
+             fillColor = this.colorScale[data.indexOf(item)];
+          } else {
+            fillColor: 'whites';
+          }
 
           return {
             weight: 2,
@@ -91,7 +98,7 @@ export default {
             color: "whites",
             dashArray: "3",
             fillOpacity: 0.7,
-            fillColor: getColor(valueParam, this.colorScale, min, max)
+            fillColor: fillColor
           }
         },
         onEachFeature: (feature, layer) => {
