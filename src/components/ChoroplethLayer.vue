@@ -75,9 +75,6 @@ export default {
           let itemGeoJSONID = feature.properties[this.geojsonIdKey]
           let color = "NONE"
           const {data} = this.geojsonData
-          console.log(data);
-          console.log(feature.properties);
-          console.log(itemGeoJSONID);
           let item = data.find(x => x[this.idKey] === itemGeoJSONID)
           if (!item) {
             return {
@@ -86,14 +83,6 @@ export default {
             }
           }
           let valueParam = item[this.value.key]
-          console.log(valueParam);
-          console.log(this.value.key);
-          if (!validNumber(valueParam)) {
-            return {
-              color: "white",
-              weight: 2
-            }
-          }
           const { min, max } = this
 
           return {
