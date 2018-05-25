@@ -11,8 +11,9 @@ import { getMin, getMax, normalizeValue, getColor, validNumber } from "../util"
 
 function mouseover({ target }) {
   target.setStyle({
-    weight: 3,
-    color: "lightblue",
+    weight: 2,
+    color: "#FDD835",
+    fillOpacity: 0.7,
     dashArray: ""
   })
 
@@ -42,6 +43,7 @@ function mouseout({ target }) {
   target.setStyle({
     weight: 2,
     color: "#FFF",
+    fillOpacity: 0.3,
     dashArray: ""
   })
   this.currentItem = { name: "", value: 0 }
@@ -52,7 +54,6 @@ export default {
     "geojson",
     "data",
     "center",
-    "colorScale",
     "titleKey",
     "idKey",
     "value",
@@ -73,7 +74,6 @@ export default {
       geojsonOptions: {
         style: feature => {
           let itemGeoJSONID = feature.properties[this.geojsonIdKey]
-          let color = "NONE"
           const {data} = this.geojsonData
           let item = data.find(x => x[this.idKey] === itemGeoJSONID)
           if (!item) {
@@ -86,8 +86,8 @@ export default {
           const { min, max } = this
           
           let fillColor;
-          if(this.colorScale[data.indexOf(item)]){
-             fillColor = this.colorScale[data.indexOf(item)];
+          if(item.color){
+             fillColor = item.color;
           } else {
             fillColor: 'whites';
           }
@@ -95,9 +95,9 @@ export default {
           return {
             weight: 2,
             opacity: 1,
-            color: "whites",
+            color: "white",
             dashArray: "3",
-            fillOpacity: 0.7,
+            fillOpacity: 0.3,
             fillColor: fillColor
           }
         },
